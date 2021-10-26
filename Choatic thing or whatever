@@ -1,0 +1,62 @@
+import turtle
+import math
+import random
+import time
+from turtle import *
+
+color_list = ['red', 'orange', 'yellow', 'green', 'cyan', 'blue', 'navy', 'purple', 'teal', 'violet', 'pink', 'brown',
+              'gray', 'black']
+
+font_list = ["Noah", "Rockwell", "Bahnschrift", "Bell MT", "Consolas", "Century Gothic"]
+
+form_list = ["normal", "bold", "italic"]
+
+font = font_list[random.randint(0, len(font_list) - 1)]
+
+form = form_list[random.randint(0, len(form_list) - 1)]
+
+pen = turtle.Turtle()
+pen.speed(0)
+pen.color(color_list[random.randint(0, len(color_list) - 1)])
+pen.penup()
+pen.goto(0, 10)
+pen.hideturtle()
+
+str_character = "abcdefghijklmnopqrstuvwxyzABCDEF\"GHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[{]};:'\|,<.>/?`~"
+ran_str = str_character[random.randint(0, len(str_character) - 1)]
+for i in range(random.randint(10, 20)):
+    ran_str += str_character[random.randint(0, len(str_character) - 1)]
+
+turtle.title("Chaotic Project.py")
+turtle.penup()
+turtle.setup(width=1000, height=800)
+turtle.speed(20)
+turtle.color(color_list[random.randint(0, len(color_list) - 1)], color_list[random.randint(0, len(color_list) - 1)])
+turtle.pendown()
+t = 0
+begin_fill()
+size = random.randint(30, 80)
+while True:
+    pen.write(ran_str, align="center", font=(font, size, form))
+    turtle.goto(random.randint(10, 200) * math.cos(random.randint(1, 10) * t),
+                random.randint(10, 200) * math.sin(random.randint(1, 10) * t))
+    turtle.color(color_list[random.randint(0, len(color_list) - 1)], color_list[random.randint(0, len(color_list) - 1)])
+    turtle.goto(random.randint(10, 200) * math.sin(random.randint(1, 10) * t),
+                random.randint(10, 200) * math.cos(random.randint(1, 10) * t))
+    turtle.color(color_list[random.randint(0, len(color_list) - 1)], color_list[random.randint(0, len(color_list) - 1)])
+    t += random.randint(1, 10)
+    if abs(turtle.xcor()) < 30 and abs(turtle.ycor()) < 30:
+        turtle.goto(0, 0)
+        end_fill()
+        time.sleep(0.5)
+        turtle.clear()
+        pen.clear()
+        pen.color(color_list[random.randint(0, len(color_list) - 1)])
+        str_character = "abcdefghijklmnopqrstuvwxyzABCDEF\"GHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[{]};:'\|,<.>/?`~"
+        ran_str = str_character[random.randint(0, len(str_character) - 1)]
+        for i in range(random.randint(10, 20)):
+            ran_str += str_character[random.randint(0, len(str_character) - 1)]
+        size = random.randint(30, 80)
+        font = font_list[random.randint(0, len(font_list) - 1)]
+        form = form_list[random.randint(0, len(form_list) - 1)]
+        begin_fill()
